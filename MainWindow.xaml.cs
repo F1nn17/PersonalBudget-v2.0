@@ -25,7 +25,8 @@ namespace PersonalBudget_2._0
             //test
             //Git setting
             InitializeComponent();
-            string data = null;
+            //ААА
+            int a = 0;
         }
     }
 }
