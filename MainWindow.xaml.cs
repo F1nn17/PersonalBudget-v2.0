@@ -22,6 +22,8 @@ namespace PersonalBudget_2._0
     {
         public MainWindow()
         {
+            //test
+            //Git setting
             InitializeComponent();
         }
     }
