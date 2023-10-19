@@ -24,7 +24,7 @@ namespace PersonalBudget_2._0
         {
             InitializeComponent();
             int a = 0;
-            TB_Income.Text = Convert.ToString(a);
+            buttIncome.Content = "Доход: " + Convert.ToString(a);
         }
     }
 }
