@@ -9,19 +9,31 @@
 
     <Canvas x:Name="MainBackground" Background="#840D031F">
         <StatusBar Name="DataStatus" Height="45" Width="1194" Canvas.Top="1" Background="{x:Null}" VerticalAlignment="Top">
-            <StatusBarItem x:Name="StatucIncome" Content="Income" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#E84B4B4B" Foreground="White" Margin="0,0,0,0" Width="200"/>
-            <StatusBarItem HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="200">
-                <TextBlock FontSize="24" Foreground="Wheat" Height="45" Width="200">
-                    Income        
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="200">
+                <TextBlock x:Name="TB_Income" FontSize="24" Foreground="Wheat" Height="45" Width="200" TextAlignment="Center">
+                    Income
                 </TextBlock>
             </StatusBarItem>
-            <StatusBarItem Height="45" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                <TextBlock FontSize="24" Foreground="Wheat" Height="45" Width="200">
+            <StatusBarItem x:Name="TB_Consumption" Grid.Column="2" Height="45" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <TextBlock FontSize="24" Foreground="Wheat" Height="45" Width="200" TextAlignment="Center">
                     Consumption
                 </TextBlock>
             </StatusBarItem>
-            <StatusBarItem Height="45" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                <TextBlock FontSize="24" Foreground="Wheat" Height="45" Width="200">
+            <StatusBarItem x:Name="TB_Balance" Grid.Column="3" Height="45" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <TextBlock FontSize="24" Foreground="Wheat" Height="45" Width="200" TextAlignment="Center">
                     Balance
                 </TextBlock>
             </StatusBarItem>

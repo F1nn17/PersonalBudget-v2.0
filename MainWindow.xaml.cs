@@ -22,11 +22,9 @@ namespace PersonalBudget_2._0
     {
         public MainWindow()
         {
-            //test
-            //Git setting
             InitializeComponent();
-            //ААА
             int a = 0;
+            TB_Income.Text = Convert.ToString(a);
         }
     }
 }
