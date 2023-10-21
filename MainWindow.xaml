@@ -13,28 +13,69 @@
                 <ItemsPanelTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="200" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="200" />
                         </Grid.ColumnDefinitions>
                     </Grid>
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
-            <StatusBarItem Grid.Column="0"  Height="45" Width="200">
-                <Button x:Name="buttIncome" Height="40" Width="200" Foreground="Wheat" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"> 
+            <StatusBarItem  Grid.Column="0" Height="45" Width="100" Background="{x:Null}" >
+                <Menu Height="40" Width="100" Foreground="Wheat" Background="{x:Null}" FontSize="24" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                    <MenuItem Header="Menu" Height="39" Width="90" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}">
+                        <MenuItem Header="_Setting" Foreground="Black"/>
+                        <Separator />
+                        <MenuItem Header="_Exit" Foreground="Black"/>
+                    </MenuItem>
+                </Menu>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="1"  Height="45" Width="200">
+                <Button x:Name="buttIncome" Height="40" Width="200" Foreground="Wheat" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                     Income
                 </Button>
             </StatusBarItem>
-            <StatusBarItem Grid.Column="1"  Height="45" Width="200">
-                <Button x:Name="buttConsumption" Height="40" Width="200" Foreground="Wheat" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                    Consumption
+            <StatusBarItem Grid.Column="2"  Height="45" Width="200">
+                <Button x:Name="buttExpenses" Height="40" Width="200" Foreground="Wheat" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                    Expenses
                 </Button>
             </StatusBarItem>
-            <StatusBarItem Grid.Column="4"  Height="45" Width="200">
+            <StatusBarItem Grid.Column="6"  Height="45" Width="200">
                 <Button x:Name="buttBalance" Height="40" Width="200" Foreground="Wheat" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                     Balance
+                </Button>
+            </StatusBarItem>
+        </StatusBar>
+        <DataGrid Name="IncomeTable" AutoGenerateColumns="True" Width="1150" Height="500" Canvas.Left="10" Canvas.Top="51" HorizontalAlignment="Center" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}">
+
+        </DataGrid>
+        <StatusBar x:Name="DataStatus_Copy" Height="45" Width="1194" Canvas.Top="556" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0">
+                <Button Height="40" Width="200" FontSize="24" Foreground="Wheat" Background="{x:Null}" BorderBrush="{x:Null}">
+                    Add
+                </Button>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="1">
+                <Button Height="40" Width="200" FontSize="24" Foreground="Wheat" Background="{x:Null}" BorderBrush="{x:Null}">
+                    Remove
                 </Button>
             </StatusBarItem>
         </StatusBar>
