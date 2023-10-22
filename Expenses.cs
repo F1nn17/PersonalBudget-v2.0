@@ -6,20 +6,23 @@ using System.Threading.Tasks;
 
 namespace PersonalBudget_2._0
 {
-    internal class Income
+    internal class Expenses
     {
         public int _id { get; set; }
-        public string _name { get; set; }
+        public string _Product { get; set; }
+        public int _amount { get; set; }
         public int _money { get; set; }
         public string _data { get; set; }
-
-        public Income() { }
-        public Income(int id, string name, int money, string data)
+        
+        public Expenses() { }
+        public Expenses(int id, string product, int amount, int money, string data)
         {
             _id = id;
-            _name = name;
+            _Product = product;
+            _amount = amount;
             _money = money;
             _data = data;
         }
     }
+
 }
