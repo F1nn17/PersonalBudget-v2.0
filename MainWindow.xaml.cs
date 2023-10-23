@@ -20,59 +20,77 @@ namespace PersonalBudget_2._0
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Lists table
+        List<Income> incomes = new List<Income>();
+        List<Expenses> expenses = new List<Expenses>();
+        List<Balance> balances = new List<Balance>();
+
+
         //flags - 'I' - Income, 'E' - expenses, 'B' - balance table
         private string flag = "I";
         public MainWindow()
         {
             InitializeComponent();
             int a = 0;
-            buttIncome.Content = "Доход: " + Convert.ToString(a);
+            buttIncome.Content = "Income: " + Convert.ToString(a);
+            Income income = new Income(0, "Bread", 1200, "20.12.2023");
+            incomes.Add(income);
+            if (flag == "I" )
+            {
+                ViewTable.ItemsSource = incomes;
+            }
 
         }
 
         private void IncomeClick(object sender, RoutedEventArgs e)
         {
             flag = "I";
-            List<Income> incomes = new List<Income>()
-            {
-                new Income(0, "Work", 100, "20.11.2023") {},
-                new Income{_id = 1, _name = "work", _money = 1473, _data = "12.03.2023"}
-            };
             ViewTable.ItemsSource = incomes;
         }
 
         private void ExpensesClick(object sender, RoutedEventArgs e)
         {
             flag = "E";
-            List<Expenses> expenses = new List<Expenses>()
-            {
-                new Expenses(0, "Bread", 2, 100, "10.03.2023"),
-                new Expenses()
-                {
-                   _id = 1, _Product = "Milk", _amount = 5, _money = 1245, _data = "13.05.2023"
-                }
-            };
             ViewTable.ItemsSource = expenses;
         }
 
         private void BalanceClick(object sender, RoutedEventArgs e)
         {
             flag = "B";
-            List<Balance> balances = new List<Balance>()
-            {
-                new Balance(0,"January", 245)
-            };
             ViewTable.ItemsSource = balances;
         }
 
         private void addNew(object sender, RoutedEventArgs e)
         {
-
+            switch (flag)
+            {
+                case "I":
+                    break;
+                case "E":
+                    break;
+                case "B":
+                    break;
+            }
         }
 
         private void removeItem(object sender, RoutedEventArgs e)
         {
-
+            switch (flag)
+            {
+                case "I":
+                    break;
+                case "E":
+                    break;
+                case "B":
+                    break;
+            }
         }
+
+        private void exitApp(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+
     }
 }
