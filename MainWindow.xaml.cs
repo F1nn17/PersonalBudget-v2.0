@@ -33,7 +33,9 @@ namespace PersonalBudget_2._0
             InitializeComponent();
             int a = 0;
             buttIncome.Content = "Income: " + Convert.ToString(a);
-            Income income = new Income(0, "Bread", 1200, "20.12.2023");
+
+            DateTime dt = DateTime.Now;
+            Income income = new Income(0, "Bread", 1200, Convert.ToString(dt));
             incomes.Add(income);
             if (flag == "I" )
             {
@@ -61,6 +63,19 @@ namespace PersonalBudget_2._0
         }
 
         private void addNew(object sender, RoutedEventArgs e)
+        {
+            switch (flag)
+            {
+                case "I":
+                    break;
+                case "E":
+                    break;
+                case "B":
+                    break;
+            }
+        }
+
+        private void editItem(object sender, RoutedEventArgs e)
         {
             switch (flag)
             {
