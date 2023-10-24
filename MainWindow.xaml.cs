@@ -119,19 +119,6 @@ namespace PersonalBudget_2._0
             }
         }
 
-        private void editItem(object sender, RoutedEventArgs e)
-        {
-            switch (flag)
-            {
-                case "I":
-                    break;
-                case "E":
-                    break;
-                case "B":
-                    break;
-            }
-        }
-
         private void removeItem(object sender, RoutedEventArgs e)
         {
             switch (flag)
