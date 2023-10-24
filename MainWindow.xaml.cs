@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,25 +22,43 @@ namespace PersonalBudget_2._0
     public partial class MainWindow : Window
     {
         //Lists table
-        List<Income> incomes = new List<Income>();
-        List<Expenses> expenses = new List<Expenses>();
-        List<Balance> balances = new List<Balance>();
+        BindingList<Income> incomes = new BindingList<Income>();
+        BindingList<Expenses> expenses = new BindingList<Expenses>();
+        BindingList<Balance> balances = new BindingList<Balance>();
+
+        private int income = 0;
+        private int expense = 0;
+        private int balance = 0;
 
 
         //flags - 'I' - Income, 'E' - expenses, 'B' - balance table
         private string flag = "I";
         public MainWindow()
         {
+            loadData();
             InitializeComponent();
-            int a = 0;
-            buttIncome.Content = "Income: " + Convert.ToString(a);
-            Income income = new Income(0, "Bread", 1200, "20.12.2023");
-            incomes.Add(income);
+            buttIncome.Content = "Income: " + Convert.ToString(income);
+            buttExpenses.Content = "Expense: " + Convert.ToString(expense);
+            buttBalance.Content = "Balance: " + Convert.ToString(balance);
             if (flag == "I" )
             {
                 ViewTable.ItemsSource = incomes;
             }
 
+        }
+
+        private void loadData()
+        {
+            incomes = WorkFile.readIncomeFile();
+            expenses = WorkFile.readExpenseFile();
+            balances = WorkFile.readBalanceFile();
+        }
+
+        private void unloadData()
+        {
+            WorkFile.writeIncomeFile(incomes.ToArray());
+            WorkFile.writeExpenseFile(expenses.ToArray());
+            WorkFile.writeBalanceFile(balances.ToArray());
         }
 
         private void IncomeClick(object sender, RoutedEventArgs e)
@@ -61,6 +80,33 @@ namespace PersonalBudget_2._0
         }
 
         private void addNew(object sender, RoutedEventArgs e)
+        {
+            switch (flag)
+            {
+                case "I":
+                    Income inc = new Income("Work",2000,"20.01.21");
+                    if (incomes.Contains(inc))
+                    {
+                        int index = incomes.IndexOf(inc);
+                        incomes[index]._money = incomes[index]._money + inc._money;
+                    }
+                    else
+                    {
+                        incomes.Add(inc);
+                    }
+                    ViewTable.ItemsSource = incomes;
+                    break;
+                case "E":
+                    Expenses exp = new Expenses("Bread",2, 94, "24.04.2021");
+                    expenses.Add(exp);
+                    ViewTable.ItemsSource = expenses;
+                    break;
+                case "B":
+                    break;
+            }
+        }
+
+        private void editItem(object sender, RoutedEventArgs e)
         {
             switch (flag)
             {
@@ -88,6 +134,7 @@ namespace PersonalBudget_2._0
 
         private void exitApp(object sender, RoutedEventArgs e)
         {
+            unloadData();
             Environment.Exit(0);
         }
 
