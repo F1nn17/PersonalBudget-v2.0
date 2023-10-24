@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -85,10 +87,22 @@ namespace PersonalBudget_2._0
             {
                 case "I":
                     Income inc = new Income("Work",2000,"20.01.21");
-                    if (incomes.Contains(inc))
+
+                    bool exists = false;
+                    int index = -1;
+                    for (int i = 0; i < incomes.Count; i++)
                     {
-                        int index = incomes.IndexOf(inc);
-                       // incomes[index]._money = incomes[index]._money + inc._money;
+                        if (incomes[i]._name == inc._name)
+                        {
+                            exists = true;
+                            index = i;
+                            break;
+                        }
+                    }
+                    if (exists)
+                    {
+                        incomes[index]._money = incomes[index]._money + inc._money;
+                        incomes[index]._data = inc._data;
                     }
                     else
                     {
@@ -98,12 +112,31 @@ namespace PersonalBudget_2._0
                     break;
                 case "E":
                     Expenses exp = new Expenses("Bread",2, 94, "24.04.2021");
-                    expenses.Add(exp);
+                    exists = false;
+                    index = -1;
+                    for (int i = 0; i < expenses.Count; i++)
+                    {
+                        if (expenses[i]._Product == exp._Product)
+                        {
+                            exists = true;
+                            index = i;
+                            break;
+                        }
+                    }
+                    if (exists)
+                    {
+                        expenses[index]._money = expenses[index]._money + exp._money;
+                        expenses[index]._amount = expenses[index]._amount + exp._amount;
+                        expenses[index]._data = exp._data;
+                    }
+                    else
+                    {
+                        expenses.Add(exp);
+                    }
                     ViewTable.ItemsSource = expenses;
                     break;
-                case "B":
-                    break;
             }
+            ViewTable.Items.Refresh();
         }
 
         private void editItem(object sender, RoutedEventArgs e)
