@@ -88,7 +88,7 @@ namespace PersonalBudget_2._0
                     if (incomes.Contains(inc))
                     {
                         int index = incomes.IndexOf(inc);
-                        incomes[index]._money = incomes[index]._money + inc._money;
+                       // incomes[index]._money = incomes[index]._money + inc._money;
                     }
                     else
                     {
