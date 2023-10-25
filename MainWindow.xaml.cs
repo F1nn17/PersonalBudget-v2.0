@@ -64,18 +64,21 @@ namespace PersonalBudget_2._0
         private void IncomeClick(object sender, RoutedEventArgs e)
         {
             flag = "I";
+            ButtonEdits.Visibility = Visibility.Visible;
             ViewTable.ItemsSource = incomes;
         }
 
         private void ExpensesClick(object sender, RoutedEventArgs e)
         {
             flag = "E";
+            ButtonEdits.Visibility = Visibility.Visible;
             ViewTable.ItemsSource = expenses;
         }
 
         private void BalanceClick(object sender, RoutedEventArgs e)
         {
             flag = "B";
+            ButtonEdits.Visibility = Visibility.Hidden;
             ViewTable.ItemsSource = balances;
         }
 

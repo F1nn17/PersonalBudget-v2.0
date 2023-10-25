@@ -10,52 +10,69 @@
 
     <Border Background="#eff2f7" CornerRadius="30">
 
-        <Canvas x:Name="MainBackground" Margin="10,10,10,10">
-            <StatusBar Name="DataStatus" Height="45" Width="1060" Canvas.Top="1" VerticalAlignment="Top">
-                <StatusBar.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="200" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="200" />
-                                <ColumnDefinition Width="200" />
-                            </Grid.ColumnDefinitions>
-                        </Grid>
-                    </ItemsPanelTemplate>
-                </StatusBar.ItemsPanel>
-                <StatusBarItem  Grid.Column="0" Height="45" Width="100" Background="{x:Null}" >
-                    <Menu Height="40" Width="100" Background="{x:Null}" FontSize="24" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-                        <MenuItem Header="Menu" Height="39" Width="90" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}">
-                            <MenuItem Header="_Setting"/>
-                            <Separator />
-                            <MenuItem Header="_Exit" Click="exitApp"/>
-                        </MenuItem>
-                    </Menu>
-                </StatusBarItem>
-                <StatusBarItem Grid.Column="1"  Height="45" Width="200">
-                    <Button x:Name="buttIncome" Height="39" Width="190" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="IncomeClick">
-                        Income
-                    </Button>
-                </StatusBarItem>
-                <StatusBarItem Grid.Column="2"  Height="45" Width="200">
-                    <Button x:Name="buttExpenses" Height="39" Width="190" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="ExpensesClick">
-                        Expenses
-                    </Button>
-                </StatusBarItem>
-                <StatusBarItem Grid.Column="6"  Height="45" Width="200">
-                    <Button x:Name="buttBalance" Height="39" Width="190" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="BalanceClick">
-                        Balance
-                    </Button>
-                </StatusBarItem>
-            </StatusBar>
+        <Canvas x:Name="MainBackground" Margin="0,10,0,10">
+            <Border CornerRadius="20" Background="#faded0" Height="45" Width="1080" Canvas.Top="1" VerticalAlignment="Top">
+                <StatusBar Name="DataStatus" Background="Transparent" Height="45" Width="1060" Canvas.Top="1" VerticalAlignment="Top">
+                    <StatusBar.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="200" />
+                                </Grid.ColumnDefinitions>
+                            </Grid>
+                        </ItemsPanelTemplate>
+                    </StatusBar.ItemsPanel>
+                    <StatusBarItem  Grid.Column="0" Height="45" Width="100" Background="{x:Null}" >
+                        <Menu Height="40" Width="100" Background="{x:Null}" FontSize="24" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                            <MenuItem Header="Menu" Height="39" Width="90" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}">
+                                <MenuItem Header="_Setting"/>
+                                <Separator />
+                                <MenuItem Header="_Exit" Click="exitApp"/>
+                            </MenuItem>
+                        </Menu>
+                    </StatusBarItem>
+                    <StatusBarItem Grid.Column="1"  Height="45" Width="200">
+                        <Button x:Name="buttIncome" Height="39" Width="190" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="IncomeClick">
+                            Income
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="20"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StatusBarItem>
+                    <StatusBarItem Grid.Column="2"  Height="45" Width="200">
+                        <Button x:Name="buttExpenses" Height="39" Width="190" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="ExpensesClick">
+                            Expenses
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="20"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StatusBarItem>
+                    <StatusBarItem Grid.Column="6"  Height="45" Width="200">
+                        <Button x:Name="buttBalance" Height="39" Width="190" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="BalanceClick">
+                            Balance
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="20"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StatusBarItem>
+                </StatusBar>
+            </Border>
             <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Name="ViewTable" Width="1040" Height="574" Canvas.Left="10" Canvas.Top="46" VerticalAlignment="Center">
 
             </DataGrid>
-            <StatusBar x:Name="DataStatus_Copy" Height="45" Width="1060" Canvas.Top="628.616" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <StatusBar x:Name="ButtonEdits" Height="45" Width="1060" Canvas.Top="628.616" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <StatusBar.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Grid>
@@ -72,19 +89,40 @@
                     </ItemsPanelTemplate>
                 </StatusBar.ItemsPanel>
                 <StatusBarItem Grid.Column="0">
-                    <Button Height="39" Width="190" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" Click="addNew">
-                        Add
-                    </Button>
+                    <Border Height="39" Width="190" CornerRadius="20" Background="#d0ffbd">
+                        <Button Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="addNew">
+                            Add
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="20"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Border>
                 </StatusBarItem>
                 <StatusBarItem Grid.Column="1">
-                    <Button Height="39" Width="190" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" Click="editItem">
-                        Edit
-                    </Button>
+                    <Border Height="39" Width="190" CornerRadius="20" Background="#ffbb94">
+                        <Button Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="editItem">
+                            Edit
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="20"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Border>
                 </StatusBarItem>
                 <StatusBarItem Grid.Column="2">
-                    <Button Height="39" Width="190" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" Click="removeItem">
-                        Remove
-                    </Button>
+                    <Border Height="39" Width="190" CornerRadius="20" Background="#fe8887">
+                        <Button Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="removeItem">
+                            Remove
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="20"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Border>
                 </StatusBarItem>
             </StatusBar>
         </Canvas>
