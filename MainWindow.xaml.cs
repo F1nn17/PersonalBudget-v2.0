@@ -39,9 +39,7 @@ namespace PersonalBudget_2._0
         {
             loadData();
             InitializeComponent();
-            buttIncome.Content = "Income: " + Convert.ToString(income);
-            buttExpenses.Content = "Expense: " + Convert.ToString(expense);
-            buttBalance.Content = "Balance: " + Convert.ToString(balance);
+            updateStatus();
             if (flag == "I" )
             {
                 ViewTable.ItemsSource = incomes;
@@ -109,6 +107,7 @@ namespace PersonalBudget_2._0
                         incomes.Add(inc);
                     }
                     ViewTable.ItemsSource = incomes;
+                    updateStatus();
                     break;
                 case "E":
                     Expenses exp = new Expenses("Bread",2, 94, "24.04.2021");
@@ -134,6 +133,7 @@ namespace PersonalBudget_2._0
                         expenses.Add(exp);
                     }
                     ViewTable.ItemsSource = expenses;
+                    updateStatus();
                     break;
             }
             ViewTable.Items.Refresh();
@@ -147,8 +147,6 @@ namespace PersonalBudget_2._0
                     break;
                 case "E":
                     break;
-                case "B":
-                    break;
             }
         }
 
@@ -160,9 +158,59 @@ namespace PersonalBudget_2._0
                     break;
                 case "E":
                     break;
-                case "B":
-                    break;
             }
+        }
+
+        private void incomeAccount ()
+        {
+            income = 0;
+            foreach(var item in incomes)
+            {
+                income += item._money;
+            } 
+        }
+        private void expenseAccount()
+        {
+            expense = 0;
+            foreach (var item in expenses)
+            {
+                expense += item._money;
+            }
+        }
+        private void balanceAccount()
+        {
+            DateTime dateTime = DateTime.Now;
+            string month = dateTime.Month.ToString();
+            Balance blc = new Balance(month,balance);
+            bool exists = false;
+            int index = -1;
+            for (int i = 0; i < balances.Count; i++)
+            {
+                if (balances[i]._month == blc._month)
+                {
+                    exists = true;
+                    index = i;
+                    break;
+                }
+            }
+            if (exists)
+            {
+                balances[index]._balance = blc._balance;
+            }
+            else
+            {
+                balances.Add(blc);
+            }
+        }
+        private void updateStatus()
+        {
+            incomeAccount();
+            expenseAccount();
+            balance = income - expense;
+            balanceAccount();
+            buttIncome.Content = "Income: " + Convert.ToString(income);
+            buttExpenses.Content = "Expense: " + Convert.ToString(expense);
+            buttBalance.Content = "Balance: " + Convert.ToString(balance);
         }
 
         private void exitApp(object sender, RoutedEventArgs e)
