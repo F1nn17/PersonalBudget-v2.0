@@ -23,6 +23,26 @@ namespace PersonalBudget_2._0
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private readonly Dictionary<int, string> months = new Dictionary<int, string>()
+        {
+                { 1, "Январь"},
+                { 2, "Февраль"},
+                { 3, "Март"},
+                { 4, "Апрель"},
+                { 5, "Мая"},
+                { 6, "Июнь"},
+                { 7, "Июль"},
+                { 8, "Август"},
+                { 9, "Сентябрь"},
+                { 10, "Октябрь"},
+                { 11, "Ноябрь"},
+                { 12, "Декабрь"}
+        };
+
+        //date
+        static DateTime dateTime = DateTime.Now;
+        string date = dateTime.Day.ToString() + "." + dateTime.Month.ToString() + "." + dateTime.Year.ToString();
         //Lists table
         BindingList<Income> incomes = new BindingList<Income>();
         BindingList<Expenses> expenses = new BindingList<Expenses>();
@@ -37,9 +57,9 @@ namespace PersonalBudget_2._0
         private string flag = "I";
         public MainWindow()
         {
-            loadData();
+            LoadData();
             InitializeComponent();
-            updateStatus();
+            UpdateStatus();
             if (flag == "I" )
             {
                 ViewTable.ItemsSource = incomes;
@@ -47,14 +67,14 @@ namespace PersonalBudget_2._0
 
         }
 
-        private void loadData()
+        private void LoadData()
         {
             incomes = WorkFile.readIncomeFile();
             expenses = WorkFile.readExpenseFile();
             balances = WorkFile.readBalanceFile();
         }
 
-        private void unloadData()
+        private void UnloadData()
         {
             WorkFile.writeIncomeFile(incomes.ToArray());
             WorkFile.writeExpenseFile(expenses.ToArray());
@@ -82,67 +102,72 @@ namespace PersonalBudget_2._0
             ViewTable.ItemsSource = balances;
         }
 
-        private void addNew(object sender, RoutedEventArgs e)
+        private void AddNew(object sender, RoutedEventArgs e)
         {
+            bool exists = false;
+            int index = -1;
             switch (flag)
             {
                 case "I":
-                    Income inc = new Income("Work",2000,"20.01.21");
-
-                    bool exists = false;
-                    int index = -1;
-                    for (int i = 0; i < incomes.Count; i++)
+                    AddIncome addIncome = new AddIncome();
+                    if(addIncome.ShowDialog() == true)
                     {
-                        if (incomes[i]._name == inc._name)
+                        Income inc = new Income(addIncome.NameIncome, addIncome.Money, date);
+                        for (int i = 0; i < incomes.Count; i++)
                         {
-                            exists = true;
-                            index = i;
-                            break;
+                            if (incomes[i].name == inc.name)
+                            {
+                                exists = true;
+                                index = i;
+                                break;
+                            }
                         }
-                    }
-                    if (exists)
-                    {
-                        incomes[index]._money = incomes[index]._money + inc._money;
-                        incomes[index]._data = inc._data;
-                    }
-                    else
-                    {
-                        incomes.Add(inc);
+                        if (exists)
+                        {
+                            incomes[index].money = incomes[index].money + inc.money;
+                            incomes[index].data = inc.data;
+                        }
+                        else
+                        {
+                            incomes.Add(inc);
+                        }
                     }
                     ViewTable.ItemsSource = incomes;
-                    updateStatus();
+                    UpdateStatus();
                     break;
                 case "E":
-                    Expenses exp = new Expenses("Bread",2, 94, "24.04.2021");
-                    exists = false;
-                    index = -1;
-                    for (int i = 0; i < expenses.Count; i++)
+                    AddExpense addExpense = new AddExpense();  
+                    if (addExpense.ShowDialog() == true)
                     {
-                        if (expenses[i]._Product == exp._Product)
+                        Expenses exp = new Expenses(addExpense.Product, 1, addExpense.Money, date);
+                        for (int i = 0; i < expenses.Count; i++)
                         {
-                            exists = true;
-                            index = i;
-                            break;
+                            if (expenses[i].product == exp.product)
+                            {
+                                exists = true;
+                                index = i;
+                                break;
+                            }
+                        }
+                        if (exists)
+                        {
+                            expenses[index].money = expenses[index].money + exp.money;
+                            expenses[index].amount = expenses[index].amount + exp.amount;
+                            expenses[index].data = exp.data;
+                        }
+                        else
+                        {
+                            expenses.Add(exp);
                         }
                     }
-                    if (exists)
-                    {
-                        expenses[index]._money = expenses[index]._money + exp._money;
-                        expenses[index]._amount = expenses[index]._amount + exp._amount;
-                        expenses[index]._data = exp._data;
-                    }
-                    else
-                    {
-                        expenses.Add(exp);
-                    }
                     ViewTable.ItemsSource = expenses;
-                    updateStatus();
+                    UpdateStatus();
                     break;
             }
             ViewTable.Items.Refresh();
         }
 
-        private void editItem(object sender, RoutedEventArgs e)
+        private void EditItem(object sender, RoutedEventArgs e)
         {
             switch (flag)
             {
@@ -153,7 +178,7 @@ namespace PersonalBudget_2._0
             }
         }
 
-        private void removeItem(object sender, RoutedEventArgs e)
+        private void RemoveItem(object sender, RoutedEventArgs e)
         {
             switch (flag)
             {
@@ -164,32 +189,31 @@ namespace PersonalBudget_2._0
             }
         }
 
-        private void incomeAccount ()
+        private void IncomeAccount ()
         {
             income = 0;
             foreach(var item in incomes)
             {
-                income += item._money;
+                income += item.money;
             } 
         }
-        private void expenseAccount()
+        private void ExpenseAccount()
         {
             expense = 0;
             foreach (var item in expenses)
             {
-                expense += item._money;
+                expense += item.money;
             }
         }
-        private void balanceAccount()
+        private void BalanceAccount()
         {
             DateTime dateTime = DateTime.Now;
-            string month = dateTime.Month.ToString();
-            Balance blc = new Balance(month,balance);
+            Balance blc = new Balance(months[dateTime.Month],balance);
             bool exists = false;
             int index = -1;
             for (int i = 0; i < balances.Count; i++)
             {
-                if (balances[i]._month == blc._month)
+                if (balances[i].month == blc.month)
                 {
                     exists = true;
                     index = i;
@@ -198,27 +222,27 @@ namespace PersonalBudget_2._0
             }
             if (exists)
             {
-                balances[index]._balance = blc._balance;
+                balances[index].balance = blc.balance;
             }
             else
             {
                 balances.Add(blc);
             }
         }
-        private void updateStatus()
+        private void UpdateStatus()
         {
-            incomeAccount();
-            expenseAccount();
+            IncomeAccount();
+            ExpenseAccount();
             balance = income - expense;
-            balanceAccount();
+            BalanceAccount();
             buttIncome.Content = "Income: " + Convert.ToString(income);
             buttExpenses.Content = "Expense: " + Convert.ToString(expense);
             buttBalance.Content = "Balance: " + Convert.ToString(balance);
         }
 
-        private void exitApp(object sender, RoutedEventArgs e)
+        private void ExitApp(object sender, RoutedEventArgs e)
         {
-            unloadData();
+            UnloadData();
             Environment.Exit(0);
         }
 

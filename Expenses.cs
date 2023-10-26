@@ -8,18 +8,18 @@ namespace PersonalBudget_2._0
 {
     public class Expenses
     {
-        public string _Product { get; set; }
-        public int _amount { get; set; }
-        public int _money { get; set; }
-        public string _data { get; set; }
+        public string product { get; set; }
+        public int amount { get; set; }
+        public int money { get; set; }
+        public string data { get; set; }
         
         public Expenses() { }
         public Expenses(string product, int amount, int money, string data)
         {
-            _Product = product;
-            _amount = amount;
-            _money = money;
-            _data = data;
+            this.product = product;
+            this.amount = amount;
+            this.money = money;
+            this.data = data;
         }
     }
 

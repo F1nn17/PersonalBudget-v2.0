@@ -33,7 +33,7 @@
                             <MenuItem Header="Menu" Height="39" Width="90" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}">
                                 <MenuItem Header="_Setting"/>
                                 <Separator />
-                                <MenuItem Header="_Exit" Click="exitApp"/>
+                                <MenuItem Header="_Exit" Click="ExitApp"/>
                             </MenuItem>
                         </Menu>
                     </StatusBarItem>
@@ -69,7 +69,7 @@
                     </StatusBarItem>
                 </StatusBar>
             </Border>
-            <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Name="ViewTable" Width="1040" Height="574" Canvas.Left="10" Canvas.Top="46" VerticalAlignment="Center">
+            <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Name="ViewTable" Width="1060" Height="574" Canvas.Left="10" Canvas.Top="46" VerticalAlignment="Center">
 
             </DataGrid>
             <StatusBar x:Name="ButtonEdits" Height="45" Width="1060" Canvas.Top="628.616" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Top">
@@ -90,7 +90,7 @@
                 </StatusBar.ItemsPanel>
                 <StatusBarItem Grid.Column="0">
                     <Border Height="39" Width="190" CornerRadius="20" Background="#d0ffbd">
-                        <Button Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="addNew">
+                        <Button Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="AddNew" VerticalAlignment="Top">
                             Add
                             <Button.Resources>
                                 <Style TargetType="Border">
@@ -102,7 +102,7 @@
                 </StatusBarItem>
                 <StatusBarItem Grid.Column="1">
                     <Border Height="39" Width="190" CornerRadius="20" Background="#ffbb94">
-                        <Button Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="editItem">
+                        <Button Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="EditItem">
                             Edit
                             <Button.Resources>
                                 <Style TargetType="Border">
@@ -114,7 +114,7 @@
                 </StatusBarItem>
                 <StatusBarItem Grid.Column="2">
                     <Border Height="39" Width="190" CornerRadius="20" Background="#fe8887">
-                        <Button Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="removeItem">
+                        <Button Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="RemoveItem">
                             Remove
                             <Button.Resources>
                                 <Style TargetType="Border">

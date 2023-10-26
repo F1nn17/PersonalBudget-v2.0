@@ -8,16 +8,16 @@ namespace PersonalBudget_2._0
 {
     public class Income
     {
-        public string _name { get; set; }
-        public int _money { get; set; }
-        public string _data { get; set; }
+        public string name { get; set; }
+        public int money { get; set; }
+        public string data { get; set; }
 
         public Income() { }
         public Income(string name, int money, string data)
         {
-            _name = name;
-            _money = money;
-            _data = data;
+            this.name = name;
+            this.money = money;
+            this.data = data;
         }
     }
 }
