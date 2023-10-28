@@ -76,9 +76,9 @@ namespace PersonalBudget_2._0
 
         private void UnloadData()
         {
-            WorkFile.writeIncomeFile(incomes.ToArray());
-            WorkFile.writeExpenseFile(expenses.ToArray());
-            WorkFile.writeBalanceFile(balances.ToArray());
+            WorkFile.writeIncomeFile(incomes);
+            WorkFile.writeExpenseFile(expenses);
+            WorkFile.writeBalanceFile(balances);
         }
 
         private void IncomeClick(object sender, RoutedEventArgs e)
@@ -132,7 +132,6 @@ namespace PersonalBudget_2._0
                             incomes.Add(inc);
                         }
                     }
-                    ViewTable.ItemsSource = incomes;
                     break;
                 case "E":
                     AddExpense addExpense = new AddExpense();  
@@ -159,7 +158,6 @@ namespace PersonalBudget_2._0
                             expenses.Add(exp);
                         }
                     }
-                    ViewTable.ItemsSource = expenses;
                     break;
             }
             UpdateStatus();
@@ -189,15 +187,22 @@ namespace PersonalBudget_2._0
             {
                 case "I":
                     RemoveElement removeInc = new RemoveElement(incomes, flag);
-                    removeInc.ShowDialog();
+                    if (removeInc.ShowDialog() == true)
+                    {
+                        incomes.RemoveAt(removeInc.IndexItem);
+                        UpdateStatus();
+                    }
                     break;
                 case "E":
                     RemoveElement removeExp = new RemoveElement(expenses, flag);
-                    removeExp.ShowDialog();
-                    UpdateStatus();
+                    if (removeExp.ShowDialog() == true)
+                    {
+                        expenses.RemoveAt(removeExp.IndexItem);
+                        expenses.ResetBindings();
+                        UpdateStatus();
+                    }
                     break;
             }
-            UpdateStatus();
             ViewTable.Items.Refresh();
         }
 

@@ -42,7 +42,9 @@ namespace PersonalBudget_2._0
         }
         public void Search_Click(object sender, RoutedEventArgs e)
         {
-            searchElement = SearchInp.Text;
+            char[] chars = SearchInp.Text.ToCharArray();
+            chars[0] = Char.ToUpper(chars[0]);
+            searchElement = new string(chars);
             searchElem();
         }
         private void searchElem() 

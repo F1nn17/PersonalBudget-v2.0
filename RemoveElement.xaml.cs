@@ -25,6 +25,8 @@ namespace PersonalBudget_2._0
         private BindingList<Expenses> listExp;
         private string flag;
 
+        private int indexItem;
+
         public RemoveElement(BindingList<Income> list,string flag)
         {
             InitializeComponent();
@@ -43,7 +45,9 @@ namespace PersonalBudget_2._0
 
         public void Search_Click(object sender, RoutedEventArgs e)
         {
-            searchElement = SearchInp.Text;
+            char[] chars = SearchInp.Text.ToCharArray();
+            chars[0] = Char.ToUpper(chars[0]);
+            searchElement = new string(chars);
             searchElem();
         }
 
@@ -57,7 +61,11 @@ namespace PersonalBudget_2._0
                         if (item.name == searchElement)
                         {
                             int index = listInc.IndexOf(item);
-
+                            ConfirmationWindow confirmationWindow = new ConfirmationWindow(listInc[index].name);
+                            if( confirmationWindow.ShowDialog() == true)
+                            {
+                                indexItem = index;
+                            }
                             break;
                         }
                     }
@@ -68,12 +76,23 @@ namespace PersonalBudget_2._0
                         if (item.product == searchElement)
                         {
                             int index = listExp.IndexOf(item);
-                            
+                            ConfirmationWindow confirmationWindow = new ConfirmationWindow(listExp[index].product);
+                            if (confirmationWindow.ShowDialog() == true)
+                            {
+                                indexItem = index;
+                            }
                             break;
                         }
                     }
                     break;
             }
+            this.DialogResult = true;
         }
+
+        public int IndexItem
+        {
+            get { return indexItem; }
+        }
+
     }
 }

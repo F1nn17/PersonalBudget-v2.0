@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,9 +20,15 @@ namespace PersonalBudget_2._0
     /// </summary>
     public partial class ConfirmationWindow : Window
     {
-        public ConfirmationWindow()
+        public ConfirmationWindow(string name)
         {
             InitializeComponent();
+            TB_ViewElementRemove.Text = name;
+        }
+
+        private void Accept_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
         }
     }
 }

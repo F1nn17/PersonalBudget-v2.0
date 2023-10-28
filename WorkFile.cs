@@ -21,9 +21,9 @@ namespace PersonalBudget_2._0
             using (FileStream fs = new FileStream("Balance.xml", FileMode.Create)) { fs.Close(); }
         }
 
-        public static void writeIncomeFile(Income[] income)
+        public static void writeIncomeFile(BindingList<Income> income)
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(Income[]));
+            XmlSerializer formatter = new XmlSerializer(typeof(BindingList<Income>));
 
             using (FileStream fs = new FileStream("Income.xml", FileMode.OpenOrCreate))
             {
@@ -31,9 +31,9 @@ namespace PersonalBudget_2._0
             }
         }
 
-        public static void writeExpenseFile(Expenses[] expense)
+        public static void writeExpenseFile(BindingList<Expenses> expense)
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(Expenses[]));
+            XmlSerializer formatter = new XmlSerializer(typeof(BindingList<Expenses>));
 
             using (FileStream fs = new FileStream("Expense.xml", FileMode.OpenOrCreate))
             {
@@ -41,9 +41,9 @@ namespace PersonalBudget_2._0
             }
         }
 
-        public static void writeBalanceFile(Balance[] balance)
+        public static void writeBalanceFile(BindingList<Balance> balance)
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(Balance[]));
+            XmlSerializer formatter = new XmlSerializer(typeof(BindingList<Balance>));
 
             using (FileStream fs = new FileStream("Balance.xml", FileMode.OpenOrCreate))
             {

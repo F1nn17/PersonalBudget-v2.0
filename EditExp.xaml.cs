@@ -25,6 +25,7 @@ namespace PersonalBudget_2._0
         public EditExp(string product, int money)
         {
             InitializeComponent();
+            this.product = product;
             TB_ProductOut.Text = product;
             TB_ProductOut.Focus();
             TB_MoneyOut.Text = money.ToString();
@@ -43,7 +44,10 @@ namespace PersonalBudget_2._0
         {
             try
             {
-                product = ProductInp.Text;
+                if(ProductInp.Text != "" )
+                {
+                    product = ProductInp.Text;
+                }
                 money = int.Parse(MoneyInp.Text);
                 this.DialogResult = true;
             }
