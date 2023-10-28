@@ -62,6 +62,15 @@
     <Compile Include="AddIncome.xaml.cs">
       <DependentUpon>AddIncome.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditExp.xaml.cs">
+      <DependentUpon>EditExp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditInc.xaml.cs">
+      <DependentUpon>EditInc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditIncExp.xaml.cs">
+      <DependentUpon>EditIncExp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkFile.cs" />
     <Page Include="AddExpense.xaml">
       <SubType>Designer</SubType>
@@ -70,6 +79,18 @@
     <Page Include="AddIncome.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditExp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditInc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditIncExp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

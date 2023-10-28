@@ -172,8 +172,16 @@ namespace PersonalBudget_2._0
             switch (flag)
             {
                 case "I":
+                    EditIncExp editInc = new EditIncExp(incomes, flag);
+                    editInc.ShowDialog();
+                    ViewTable.Items.Refresh();
+                    UpdateStatus();
                     break;
                 case "E":
+                    EditIncExp editExp = new EditIncExp(expenses, flag);
+                    editExp.ShowDialog();
+                    ViewTable.Items.Refresh();
+                    UpdateStatus();
                     break;
             }
         }
