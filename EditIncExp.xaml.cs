@@ -71,9 +71,11 @@ namespace PersonalBudget_2._0
                         if (item.product == searchElement)
                         {
                             int index = listExp.IndexOf(item);
-                            EditExp editInc = new EditExp(listExp[index].product, listExp[index].money);
-                            if (editInc.ShowDialog() == true)
+                            EditExp editExp = new EditExp(listExp[index].product, listExp[index].money);
+                            if (editExp.ShowDialog() == true)
                             {
+                                listExp[index].product = editExp.Product;
+                                listExp[index].money = editExp.Money;
                                 this.DialogResult = true;
                             }
                             break;

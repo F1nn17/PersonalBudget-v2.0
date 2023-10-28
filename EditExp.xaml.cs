@@ -20,17 +20,31 @@ namespace PersonalBudget_2._0
     /// </summary>
     public partial class EditExp : Window
     {
+        private string product;
+        private int money;
         public EditExp(string product, int money)
         {
             InitializeComponent();
             TB_ProductOut.Text = product;
+            TB_ProductOut.Focus();
             TB_MoneyOut.Text = money.ToString();
+        }
+
+        public string Product
+        {
+            get { return this.product; }
+        }
+        public int Money
+        {
+            get { return this.money; }
         }
 
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                product = ProductInp.Text;
+                money = int.Parse(MoneyInp.Text);
                 this.DialogResult = true;
             }
             catch

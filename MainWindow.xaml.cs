@@ -246,6 +246,7 @@ namespace PersonalBudget_2._0
             buttIncome.Content = "Income: " + Convert.ToString(income);
             buttExpenses.Content = "Expense: " + Convert.ToString(expense);
             buttBalance.Content = "Balance: " + Convert.ToString(balance);
+            UnloadData();
         }
 
         private void ExitApp(object sender, RoutedEventArgs e)

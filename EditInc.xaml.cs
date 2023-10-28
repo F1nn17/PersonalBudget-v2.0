@@ -24,8 +24,7 @@ namespace PersonalBudget_2._0
         public EditInc(int money)
         {
             InitializeComponent();
-            MoneyInp.Text = money.ToString();
-            MoneyInp.Focus();
+            TB_MoneyOut.Text = money.ToString();
         }
         public int Money
         {
