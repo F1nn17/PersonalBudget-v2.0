@@ -133,7 +133,6 @@ namespace PersonalBudget_2._0
                         }
                     }
                     ViewTable.ItemsSource = incomes;
-                    UpdateStatus();
                     break;
                 case "E":
                     AddExpense addExpense = new AddExpense();  
@@ -161,9 +160,9 @@ namespace PersonalBudget_2._0
                         }
                     }
                     ViewTable.ItemsSource = expenses;
-                    UpdateStatus();
                     break;
             }
+            UpdateStatus();
             ViewTable.Items.Refresh();
         }
 
@@ -174,16 +173,14 @@ namespace PersonalBudget_2._0
                 case "I":
                     EditIncExp editInc = new EditIncExp(incomes, flag);
                     editInc.ShowDialog();
-                    ViewTable.Items.Refresh();
-                    UpdateStatus();
                     break;
                 case "E":
                     EditIncExp editExp = new EditIncExp(expenses, flag);
                     editExp.ShowDialog();
-                    ViewTable.Items.Refresh();
-                    UpdateStatus();
                     break;
             }
+            UpdateStatus();
+            ViewTable.Items.Refresh();
         }
 
         private void RemoveItem(object sender, RoutedEventArgs e)
@@ -191,10 +188,17 @@ namespace PersonalBudget_2._0
             switch (flag)
             {
                 case "I":
+                    RemoveElement removeInc = new RemoveElement(incomes, flag);
+                    removeInc.ShowDialog();
                     break;
                 case "E":
+                    RemoveElement removeExp = new RemoveElement(expenses, flag);
+                    removeExp.ShowDialog();
+                    UpdateStatus();
                     break;
             }
+            UpdateStatus();
+            ViewTable.Items.Refresh();
         }
 
         private void IncomeAccount ()
