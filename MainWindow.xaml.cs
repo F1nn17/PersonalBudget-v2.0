@@ -60,6 +60,13 @@ namespace PersonalBudget_2._0
             LoadData();
             InitializeComponent();
             UpdateStatus();
+            if (months[dateTime.Month] != balances[balances.Count-1].month)
+            {
+                incomes.Clear();
+                expenses.Clear();
+                UpdateStatus();
+                UnloadData();
+            }
             if (flag == "I" )
             {
                 ViewTable.ItemsSource = incomes;
