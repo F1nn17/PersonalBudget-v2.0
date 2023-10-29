@@ -25,7 +25,7 @@ namespace PersonalBudget_2._0
         {
             XmlSerializer formatter = new XmlSerializer(typeof(BindingList<Income>));
 
-            using (FileStream fs = new FileStream("Income.xml", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream("Income.xml", FileMode.Truncate))
             {
                 formatter.Serialize(fs, income);
             }
@@ -35,7 +35,7 @@ namespace PersonalBudget_2._0
         {
             XmlSerializer formatter = new XmlSerializer(typeof(BindingList<Expenses>));
 
-            using (FileStream fs = new FileStream("Expense.xml", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream("Expense.xml", FileMode.Truncate))
             {
                 formatter.Serialize(fs, expense);
             }
@@ -45,7 +45,7 @@ namespace PersonalBudget_2._0
         {
             XmlSerializer formatter = new XmlSerializer(typeof(BindingList<Balance>));
 
-            using (FileStream fs = new FileStream("Balance.xml", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream("Balance.xml", FileMode.Truncate))
             {
                 formatter.Serialize(fs, balance);
             }

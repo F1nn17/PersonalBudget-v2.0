@@ -114,7 +114,7 @@
                 </StatusBarItem>
                 <StatusBarItem Grid.Column="2">
                     <Border Height="39" Width="190" CornerRadius="20" Background="#fe8887">
-                        <Button Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="RemoveItem" Visibility="Hidden">
+                        <Button Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="RemoveItem" Visibility="Visible">
                             Remove
                             <Button.Resources>
                                 <Style TargetType="Border">
