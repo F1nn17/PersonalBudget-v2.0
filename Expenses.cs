@@ -11,15 +11,15 @@ namespace PersonalBudget_2._0
         public string product { get; set; }
         public int amount { get; set; }
         public int money { get; set; }
-        public string data { get; set; }
+        public string date { get; set; }
         
         public Expenses() { }
-        public Expenses(string product, int amount, int money, string data)
+        public Expenses(string product, int amount, int money, string date)
         {
             this.product = product;
             this.amount = amount;
             this.money = money;
-            this.data = data;
+            this.date = date;
         }
     }
 

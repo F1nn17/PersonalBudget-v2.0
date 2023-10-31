@@ -10,14 +10,14 @@ namespace PersonalBudget_2._0
     {
         public string name { get; set; }
         public int money { get; set; }
-        public string data { get; set; }
+        public string date { get; set; }
 
         public Income() { }
-        public Income(string name, int money, string data)
+        public Income(string name, int money, string date)
         {
             this.name = name;
             this.money = money;
-            this.data = data;
+            this.date = date;
         }
     }
 }

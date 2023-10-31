@@ -46,7 +46,9 @@ namespace PersonalBudget_2._0
             {
                 if(ProductInp.Text != "" )
                 {
-                    product = ProductInp.Text;
+                    char[] chars = ProductInp.Text.ToCharArray();
+                    chars[0] = Char.ToUpper(chars[0]);
+                    product = new string(chars);
                 }
                 money = int.Parse(MoneyInp.Text);
                 this.DialogResult = true;

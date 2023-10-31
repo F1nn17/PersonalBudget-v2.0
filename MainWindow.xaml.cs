@@ -30,7 +30,7 @@ namespace PersonalBudget_2._0
                 { 2, "Февраль"},
                 { 3, "Март"},
                 { 4, "Апрель"},
-                { 5, "Мая"},
+                { 5, "Май"},
                 { 6, "Июнь"},
                 { 7, "Июль"},
                 { 8, "Август"},
@@ -60,12 +60,17 @@ namespace PersonalBudget_2._0
             LoadData();
             InitializeComponent();
             UpdateStatus();
-            if (months[dateTime.Month] != balances[balances.Count-1].month)
+            if (balances.Count >= 2)
             {
-                incomes.Clear();
-                expenses.Clear();
-                UpdateStatus();
-                UnloadData();
+                if (months[dateTime.Month] != balances[balances.Count - 2].month)
+                {
+                    incomes.Clear();
+                    expenses.Clear();
+                    Income pastBalance = new Income("Past Balance", balances[balances.Count-2].balance,date);
+                    incomes.Add(pastBalance);
+                    UpdateStatus();
+                    UnloadData();
+                }
             }
             if (flag == "I" )
             {
@@ -132,7 +137,7 @@ namespace PersonalBudget_2._0
                         if (exists)
                         {
                             incomes[index].money = incomes[index].money + inc.money;
-                            incomes[index].data = inc.data;
+                            incomes[index].date = inc.date;
                         }
                         else
                         {
@@ -158,7 +163,7 @@ namespace PersonalBudget_2._0
                         {
                             expenses[index].money = expenses[index].money + exp.money;
                             expenses[index].amount = expenses[index].amount + exp.amount;
-                            expenses[index].data = exp.data;
+                            expenses[index].date = exp.date;
                         }
                         else
                         {
