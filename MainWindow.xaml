@@ -30,10 +30,10 @@
                     </StatusBar.ItemsPanel>
                     <StatusBarItem  Grid.Column="0" Height="45" Width="100" Background="{x:Null}" >
                         <Menu Height="40" Width="100" Background="{x:Null}" FontSize="24" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-                            <MenuItem Header="Menu" Height="39" Width="90" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}">
-                                <MenuItem Header="_Setting"/>
+                            <MenuItem Name="Menu" Header="Menu" Height="39" Width="90" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}">
+                                <MenuItem Name="settingMenu" Header="_Setting"/>
                                 <Separator />
-                                <MenuItem Header="_Exit" Click="ExitApp"/>
+                                <MenuItem Name="exitMenu" Header="_Exit" Click="ExitApp"/>
                             </MenuItem>
                         </Menu>
                     </StatusBarItem>
@@ -90,7 +90,7 @@
                 </StatusBar.ItemsPanel>
                 <StatusBarItem Grid.Column="0">
                     <Border Height="39" Width="190" CornerRadius="20" Background="#d0ffbd">
-                        <Button Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="AddNew" VerticalAlignment="Top">
+                        <Button x:Name="buttAdd" Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="AddNew" VerticalAlignment="Top">
                             Add
                             <Button.Resources>
                                 <Style TargetType="Border">
@@ -102,7 +102,7 @@
                 </StatusBarItem>
                 <StatusBarItem Grid.Column="1">
                     <Border Height="39" Width="190" CornerRadius="20" Background="#ffbb94">
-                        <Button Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="EditItem">
+                        <Button x:Name="buttEdit" Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="EditItem">
                             Edit
                             <Button.Resources>
                                 <Style TargetType="Border">
@@ -114,7 +114,7 @@
                 </StatusBarItem>
                 <StatusBarItem Grid.Column="2">
                     <Border Height="39" Width="190" CornerRadius="20" Background="#fe8887">
-                        <Button Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="RemoveItem" Visibility="Visible">
+                        <Button x:Name="buttRemove" Height="39" Width="190" FontSize="24" Background="Transparent" BorderBrush="{x:Null}" Click="RemoveItem" Visibility="Visible">
                             Remove
                             <Button.Resources>
                                 <Style TargetType="Border">

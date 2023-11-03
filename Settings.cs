@@ -8,7 +8,7 @@ namespace PersonalBudget_2._0
 {
     internal class Settings
     {
-        private string language = "ru";
+        private string language = "en";
 
         public Settings() { }
         public Settings(string language) 
