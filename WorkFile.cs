@@ -9,16 +9,27 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.Text.Json;
+using System.Diagnostics;
 
 namespace PersonalBudget_2._0
 {
     internal class WorkFile
     {
+        //xml
         private static void createFile()
         {
             using (FileStream fs = new FileStream("Income.xml", FileMode.Create)) { fs.Close(); }
             using (FileStream fs = new FileStream("Expense.xml", FileMode.Create)) { fs.Close(); }
             using (FileStream fs = new FileStream("Balance.xml", FileMode.Create)) { fs.Close(); }
+            using (FileStream fs = new FileStream("Settings.json", FileMode.Create)) { fs.Close(); }
+            using (FileStream fs = new FileStream("Settings.json", FileMode.Truncate))
+            {
+                //запись базовых настроек
+                Settings settings = new Settings();
+                JsonSerializer.Serialize<Settings>(fs, settings);
+                fs.Close();
+            }
         }
 
         public static void writeIncomeFile(BindingList<Income> income)
@@ -121,6 +132,23 @@ namespace PersonalBudget_2._0
             }
             catch { createFile(); }
             return balance;
+        }
+
+        //Json
+        public static Settings ReadSettings()
+        {
+            using (FileStream fs = new FileStream("Settings.json", FileMode.Open))
+            {
+                Settings setting = JsonSerializer.Deserialize<Settings>(fs);
+                return setting;
+            }
+        }
+        public static void WriteSettings()
+        {
+            using (FileStream fs = new FileStream("Settings.json", FileMode.Truncate ))
+            {
+               //  JsonSerializer.Serialize<Person>(fs, tom);
+            }
         }
     }
 }
