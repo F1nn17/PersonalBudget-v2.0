@@ -143,11 +143,11 @@ namespace PersonalBudget_2._0
                 return setting;
             }
         }
-        public static void WriteSettings()
+        public static void WriteSettings(Settings settings)
         {
-            using (FileStream fs = new FileStream("Settings.json", FileMode.Truncate ))
+            using (FileStream fs = new FileStream("Settings.json", FileMode.Truncate))
             {
-               //  JsonSerializer.Serialize<Person>(fs, tom);
+                JsonSerializer.Serialize<Settings>(fs, settings);
             }
         }
     }

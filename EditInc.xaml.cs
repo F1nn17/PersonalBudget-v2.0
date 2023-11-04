@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersonalBudget_2._0.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
@@ -21,9 +22,24 @@ namespace PersonalBudget_2._0
     public partial class EditInc : Window
     {
         private int money;
+
+        private string settings = MainWindow.getSetting();
+
         public EditInc(int money)
         {
             InitializeComponent();
+            if (settings == "en")
+            {
+                MoneyView.Text = "Money +";
+                buttEdit.Content = "Edit";
+                buttCancel.Content = "Cancel";
+            }
+            else if (settings == "ru")
+            {
+                MoneyView.Text = "Деньги +";
+                buttEdit.Content = "Изменить";
+                buttCancel.Content = "Отмена";
+            }
             TB_MoneyOut.Text = money.ToString();
         }
         public int Money

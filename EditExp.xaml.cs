@@ -22,9 +22,26 @@ namespace PersonalBudget_2._0
     {
         private string product;
         private int money;
+
+        private string settings = MainWindow.getSetting();
+
         public EditExp(string product, int money)
         {
             InitializeComponent();
+            if (settings == "en")
+            {
+                ProductView.Text = "Product:";
+                MoneyView.Text = "Money -";
+                buttEdit.Content = "Edit";
+                buttCancel.Content = "Cancel";
+            }
+            else if (settings == "ru")
+            {
+                ProductView.Text = "Продукт:";
+                MoneyView.Text = "Деньги -";
+                buttEdit.Content = "Изменить";
+                buttCancel.Content = "Отмена";
+            }
             this.product = product;
             TB_ProductOut.Text = product;
             TB_ProductOut.Focus();

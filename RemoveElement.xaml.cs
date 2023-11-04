@@ -1,7 +1,9 @@
-﻿using System;
+﻿using PersonalBudget_2._0.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,9 +29,23 @@ namespace PersonalBudget_2._0
 
         private int indexItem;
 
+        private string settings = MainWindow.getSetting();
+
         public RemoveElement(BindingList<Income> list,string flag)
         {
             InitializeComponent();
+            if (settings == "en")
+            {
+                ViewSearch.Text = "Search:";
+                buttSearch.Content = "Search";
+                buttCancel.Content = "Cancel";
+            }
+            else if (settings == "ru")
+            {
+                ViewSearch.Text = "Найти:";
+                buttSearch.Content = "Найти";
+                buttCancel.Content = "Отменить";
+            }
             SearchInp.Focus();
             listInc = list;
             this.flag = flag;
@@ -38,6 +54,18 @@ namespace PersonalBudget_2._0
         public RemoveElement(BindingList<Expenses> list, string flag)
         {
             InitializeComponent();
+            if (settings == "en")
+            {
+                ViewSearch.Text = "Search:";
+                buttSearch.Content = "Search";
+                buttCancel.Content = "Cancel";
+            }
+            else if (settings == "ru")
+            {
+                ViewSearch.Text = "Найти:";
+                buttSearch.Content = "Найти";
+                buttCancel.Content = "Отменить";
+            }
             SearchInp.Focus();
             listExp = list;
             this.flag = flag;
@@ -68,6 +96,10 @@ namespace PersonalBudget_2._0
                             }
                             break;
                         }
+                        else
+                        {
+                            indexItem = -1;
+                        }
                     }
                     break;
                 case "E":
@@ -82,6 +114,10 @@ namespace PersonalBudget_2._0
                                 indexItem = index;
                             }
                             break;
+                        }
+                        else
+                        {
+                            indexItem = -1;
                         }
                     }
                     break;

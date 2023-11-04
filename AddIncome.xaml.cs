@@ -19,11 +19,41 @@ namespace PersonalBudget_2._0
     /// </summary>
     public partial class AddIncome : Window
     {
-        private string nameIncome = "Work";
+        private string nameIncome;
         private int money;
+
+        private string settings = MainWindow.getSetting();
+
         public AddIncome()
         {
             InitializeComponent();
+            if(settings == "en")
+            {
+                NameView.Text = "Name =";
+                MoneyView.Text = "Money +=";
+                buttAdd.Content = "Add";
+                buttCancel.Content = "Cancel";
+                ChoiceIncome.ItemsSource = new string[]
+                {
+                    "Work",
+                    "UnderWork",
+                    "Sale"
+                };
+            }
+            else if (settings == "ru")
+            {
+                NameView.Text = "Доход =";
+                MoneyView.Text = "Деньги +=";
+                buttAdd.Content = "Добавить";
+                buttCancel.Content = "Отмена";
+                ChoiceIncome.ItemsSource = new string[]
+                {
+                    "Работа",
+                    "Подработка",
+                    "Продажа"
+                };
+            }
+            ChoiceIncome.SelectedIndex = 0;
             MoneyInp.Focus();
             this.DataContext = money;
         }
@@ -49,6 +79,14 @@ namespace PersonalBudget_2._0
                 this.DialogResult = false;
             }
 
+        }
+
+        private void ChoiceIncome_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ChoiceIncome.SelectedItem is string str)
+            {
+                nameIncome = str;
+            }
         }
     }
 }

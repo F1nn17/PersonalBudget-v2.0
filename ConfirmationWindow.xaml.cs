@@ -20,9 +20,23 @@ namespace PersonalBudget_2._0
     /// </summary>
     public partial class ConfirmationWindow : Window
     {
+        private string settings = MainWindow.getSetting();
+
         public ConfirmationWindow(string name)
         {
             InitializeComponent();
+            if (settings == "en")
+            {
+                ViewDelete.Text = "Delete?";
+                buttYes.Content = "Yes";
+                buttCancel.Content = "Cancel";
+            }
+            else if (settings == "ru")
+            {
+                ViewDelete.Text = "Удалить?";
+                buttYes.Content = "Да";
+                buttCancel.Content = "Отмена";
+            }
             TB_ViewElementRemove.Text = name;
         }
 

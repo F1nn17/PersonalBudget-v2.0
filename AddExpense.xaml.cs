@@ -21,9 +21,26 @@ namespace PersonalBudget_2._0
     {
         private string product;
         private int money;
+
+        private string settings = MainWindow.getSetting();
+
         public AddExpense()
         {
             InitializeComponent();
+            if (settings == "en")
+            {
+                ProductView.Text = "Product:";
+                MoneyView.Text = "Money -";
+                buttAdd.Content = "Add";
+                buttCancel.Content = "Cancel";
+            }
+            else if (settings == "ru")
+            {
+                ProductView.Text = "Продукт:";
+                MoneyView.Text = "Деньги -";
+                buttAdd.Content = "Добавить";
+                buttCancel.Content = "Отмена";
+            }
             ProductInp.Focus();
         }
         public int Money
