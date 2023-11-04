@@ -324,6 +324,7 @@ namespace PersonalBudget_2._0
                         break;
                 }
                 WorkFile.WriteSettings(new Settings(lang));
+                UnloadData();
                 ProcessStartInfo Info = new ProcessStartInfo();
                 Info.Arguments = "/C choice /C Y /N /D Y /T 1 & START \"\" \"" + Assembly.GetEntryAssembly().Location + "\"";
                 Info.WindowStyle = ProcessWindowStyle.Hidden;
