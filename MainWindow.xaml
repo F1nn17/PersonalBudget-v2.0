@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PersonalBudget_2._0"
         Height="720" Width="1080" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None"
         AllowsTransparency="True" Background="Transparent"
+        Icon="SilvMoney.ico"
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib">
 
     <Border Background="#eff2f7" CornerRadius="30">
