@@ -5,16 +5,28 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalBudget_2.0", "PersonalBudget_2.0.csproj", "{5A3A1A4D-6A70-4311-9FBA-9C21A494697F}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "InstallPB", "..\InstallPB\InstallPB.vdproj", "{45B6AFC5-7BB5-47F4-8AFC-0F5B672F281A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Any CPU = All|Any CPU
 		Debug|Any CPU = Debug|Any CPU
+		DefaultBuild|Any CPU = DefaultBuild|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A3A1A4D-6A70-4311-9FBA-9C21A494697F}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{5A3A1A4D-6A70-4311-9FBA-9C21A494697F}.All|Any CPU.Build.0 = Release|Any CPU
 		{5A3A1A4D-6A70-4311-9FBA-9C21A494697F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5A3A1A4D-6A70-4311-9FBA-9C21A494697F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A3A1A4D-6A70-4311-9FBA-9C21A494697F}.DefaultBuild|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A3A1A4D-6A70-4311-9FBA-9C21A494697F}.DefaultBuild|Any CPU.Build.0 = Debug|Any CPU
 		{5A3A1A4D-6A70-4311-9FBA-9C21A494697F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A3A1A4D-6A70-4311-9FBA-9C21A494697F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45B6AFC5-7BB5-47F4-8AFC-0F5B672F281A}.All|Any CPU.ActiveCfg = Debug
+		{45B6AFC5-7BB5-47F4-8AFC-0F5B672F281A}.Debug|Any CPU.ActiveCfg = Debug
+		{45B6AFC5-7BB5-47F4-8AFC-0F5B672F281A}.DefaultBuild|Any CPU.ActiveCfg = Debug
+		{45B6AFC5-7BB5-47F4-8AFC-0F5B672F281A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

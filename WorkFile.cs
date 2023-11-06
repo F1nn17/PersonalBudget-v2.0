@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.Text.Json;
 using System.Diagnostics;
+using PersonalBudget_2._0.Properties;
 
 namespace PersonalBudget_2._0
 {
@@ -19,17 +20,17 @@ namespace PersonalBudget_2._0
         //xml
         private static void createFile()
         {
-            using (FileStream fs = new FileStream("Income.xml", FileMode.Create)) { fs.Close(); }
-            using (FileStream fs = new FileStream("Expense.xml", FileMode.Create)) { fs.Close(); }
-            using (FileStream fs = new FileStream("Balance.xml", FileMode.Create)) { fs.Close(); }
-            using (FileStream fs = new FileStream("Settings.json", FileMode.Create)) { fs.Close(); }
-            using (FileStream fs = new FileStream("Settings.json", FileMode.Truncate))
-            {
-                //запись базовых настроек
-                Settings settings = new Settings();
-                JsonSerializer.Serialize<Settings>(fs, settings);
-                fs.Close();
-            }
+            //using (FileStream fs = new FileStream("Income.xml", FileMode.Create)) { fs.Close(); }
+            //using (FileStream fs = new FileStream("Expense.xml", FileMode.Create)) { fs.Close(); }
+            //using (FileStream fs = new FileStream("Balance.xml", FileMode.Create)) { fs.Close(); }
+            //using (FileStream fs = new FileStream("Settings.json", FileMode.Create)) { fs.Close(); }
+            //using (FileStream fs = new FileStream("Settings.json", FileMode.Truncate))
+            //{
+            //    //запись базовых настроек
+            //    Settings settings = new Settings("ru");
+            //    JsonSerializer.Serialize<Settings>(fs, settings);
+            //    fs.Close();
+            //}
         }
 
         public static void writeIncomeFile(BindingList<Income> income)
@@ -83,7 +84,7 @@ namespace PersonalBudget_2._0
             }
             catch 
             {
-                createFile();
+                using (FileStream fs = new FileStream("Income.xml", FileMode.Create)) { fs.Close(); }
             }
             return incomes;
         }
@@ -107,7 +108,7 @@ namespace PersonalBudget_2._0
                     }
                 }
             }
-            catch { createFile(); }
+            catch { using (FileStream fs = new FileStream("Expense.xml", FileMode.Create)) { fs.Close(); } }
             return expenses;
         }
 
@@ -130,18 +131,33 @@ namespace PersonalBudget_2._0
                     }
                 }
             }
-            catch { createFile(); }
+            catch { using (FileStream fs = new FileStream("Balance.xml", FileMode.Create)) { fs.Close(); } }
             return balance;
         }
 
         //Json
         public static Settings ReadSettings()
         {
-            using (FileStream fs = new FileStream("Settings.json", FileMode.Open))
+            Settings setting = new Settings();
+            try
             {
-                Settings setting = JsonSerializer.Deserialize<Settings>(fs);
-                return setting;
+                using (FileStream fs = new FileStream("Settings.json", FileMode.Open))
+                {
+                     setting = JsonSerializer.Deserialize<Settings>(fs);
+                }
             }
+            catch
+            {
+                using (FileStream fs = new FileStream("Settings.json", FileMode.Create)) { fs.Close(); }
+                using (FileStream fs = new FileStream("Settings.json", FileMode.Truncate))
+                {
+                    //запись базовых настроек
+                    Settings settings = new Settings("ru");
+                    JsonSerializer.Serialize<Settings>(fs, settings);
+                    fs.Close();
+                }
+            }
+            return setting;
         }
         public static void WriteSettings(Settings settings)
         {
