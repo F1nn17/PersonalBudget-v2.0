@@ -11,8 +11,8 @@
 
     <Border Background="#eff2f7" CornerRadius="30">
 
-        <Canvas x:Name="MainBackground" Margin="0,10,0,10">
-            <Border CornerRadius="20" Background="#faded0" Height="45" Width="1080" Canvas.Top="1" VerticalAlignment="Top">
+        <Canvas x:Name="MainBackground">
+            <Border CornerRadius="30" Background="#faded0" Height="45" Width="1080" Canvas.Top="1" VerticalAlignment="Top">
                 <StatusBar Name="DataStatus" Background="Transparent" Height="45" Width="1060" Canvas.Top="1" VerticalAlignment="Top">
                     <StatusBar.ItemsPanel>
                         <ItemsPanelTemplate>
