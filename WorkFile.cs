@@ -17,22 +17,7 @@ namespace PersonalBudget_2._0
 {
     internal class WorkFile
     {
-        //xml
-        private static void createFile()
-        {
-            //using (FileStream fs = new FileStream("Income.xml", FileMode.Create)) { fs.Close(); }
-            //using (FileStream fs = new FileStream("Expense.xml", FileMode.Create)) { fs.Close(); }
-            //using (FileStream fs = new FileStream("Balance.xml", FileMode.Create)) { fs.Close(); }
-            //using (FileStream fs = new FileStream("Settings.json", FileMode.Create)) { fs.Close(); }
-            //using (FileStream fs = new FileStream("Settings.json", FileMode.Truncate))
-            //{
-            //    //запись базовых настроек
-            //    Settings settings = new Settings("ru");
-            //    JsonSerializer.Serialize<Settings>(fs, settings);
-            //    fs.Close();
-            //}
-        }
-
+        //XML
         public static void writeIncomeFile(BindingList<Income> income)
         {
             XmlSerializer formatter = new XmlSerializer(typeof(BindingList<Income>));
@@ -60,6 +45,16 @@ namespace PersonalBudget_2._0
             using (FileStream fs = new FileStream("Balance.xml", FileMode.Truncate))
             {
                 formatter.Serialize(fs, balance);
+            }
+        }
+
+        public static void writeYearFile(BindingList<Year> years) 
+        {
+            XmlSerializer formatter = new XmlSerializer(typeof(BindingList<Year>));
+
+            using (FileStream fs = new FileStream("Years.xml", FileMode.Truncate))
+            {
+                formatter.Serialize(fs, years);
             }
         }
 
@@ -135,6 +130,28 @@ namespace PersonalBudget_2._0
             return balance;
         }
 
+        public static BindingList<Year> readYearFile()
+        {
+            BindingList<Year> years = new BindingList<Year>();
+            try
+            {
+                using (FileStream fs = new FileStream("Years.xml", FileMode.Open))
+                {
+                    XmlSerializer formatter = new XmlSerializer(typeof(Year[]));
+                    Year[] newYear = formatter.Deserialize(fs) as Year[];
+                    if (newYear != null)
+                    {
+                        foreach (Year element in newYear)
+                        {
+                            years.Add(element);
+                        }
+                    }
+                }
+            }
+            catch { using (FileStream fs = new FileStream("Years.xml", FileMode.Create)) { fs.Close(); } }
+            return years;
+        }
+
         //Json
         public static Settings ReadSettings()
         {
@@ -152,15 +169,19 @@ namespace PersonalBudget_2._0
                 using (FileStream fs = new FileStream("Settings.json", FileMode.Truncate))
                 {
                     //запись базовых настроек
-                    Settings settings = new Settings("ru");
+                    DateTime dt = DateTime.Now;
+                    int year = dt.Year;
+                    Settings settings = new Settings("ru", year);
                     JsonSerializer.Serialize<Settings>(fs, settings);
                     fs.Close();
                 }
             }
             return setting;
         }
+
         public static void WriteSettings(Settings settings)
         {
+            
             using (FileStream fs = new FileStream("Settings.json", FileMode.Truncate))
             {
                 JsonSerializer.Serialize<Settings>(fs, settings);

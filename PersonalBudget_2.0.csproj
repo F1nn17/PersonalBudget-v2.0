@@ -133,6 +133,7 @@
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkFile.cs" />
+    <Compile Include="Year.cs" />
     <Page Include="AddExpense.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

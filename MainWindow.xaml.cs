@@ -47,6 +47,7 @@ namespace PersonalBudget_2._0
         BindingList<Income> incomes = new BindingList<Income>();
         BindingList<Expenses> expenses = new BindingList<Expenses>();
         BindingList<Balance> balances = new BindingList<Balance>();
+        BindingList<Year> years = new BindingList<Year>();
 
         //загрузка настроек
         private static Settings setting = new Settings();
@@ -61,6 +62,15 @@ namespace PersonalBudget_2._0
         public MainWindow()
         {
             LoadData();
+            if(setting.Year != dateTime.Year)
+            {
+                incomes.Clear();
+                expenses.Clear();
+                balances.Clear();
+                YearAccount();
+                UnloadData();
+                LoadData();
+            }
             InitializeComponent();
             LanguageSettings();
             UpdateStatus();
@@ -70,8 +80,16 @@ namespace PersonalBudget_2._0
                 {
                     incomes.Clear();
                     expenses.Clear();
-                    Income pastBalance = new Income("Past Balance", balances[balances.Count - 2].balance, date);
-                    incomes.Add(pastBalance);
+                    if (setting.Language == "en")
+                    { 
+                        Income pastBalance = new Income("Past Balance", balances[balances.Count - 2].balance, date);
+                        incomes.Add(pastBalance);
+                    }
+                    else if(setting.Language == "ru")
+                    {
+                        Income pastBalance = new Income("Предыдущий месяц", balances[balances.Count - 2].balance, date);
+                        incomes.Add(pastBalance);
+                    }
                     UpdateStatus();
                     UnloadData();
                 }
@@ -143,6 +161,7 @@ namespace PersonalBudget_2._0
                 buttRemove.Content = "Remove";
 
                 Menu.Header = "Menu";
+                storageYears.Header = "_Year";
                 settingMenu.Header = "_Setting";
                 exitMenu.Header = "_Exit";
             }
@@ -153,6 +172,7 @@ namespace PersonalBudget_2._0
                 buttRemove.Content = "Удалить";
 
                 Menu.Header = "Меню";
+                storageYears.Header = "_Год";
                 settingMenu.Header = "_Настройки";
                 exitMenu.Header = "_Выход";
             }
@@ -163,6 +183,7 @@ namespace PersonalBudget_2._0
             incomes = WorkFile.readIncomeFile();
             expenses = WorkFile.readExpenseFile();
             balances = WorkFile.readBalanceFile();
+            years = WorkFile.readYearFile();
             setting = WorkFile.ReadSettings();
         }
 
@@ -171,6 +192,7 @@ namespace PersonalBudget_2._0
             WorkFile.writeIncomeFile(incomes);
             WorkFile.writeExpenseFile(expenses);
             WorkFile.writeBalanceFile(balances);
+            WorkFile.writeYearFile(years);
         }
 
         private void IncomeClick(object sender, RoutedEventArgs e)
@@ -335,6 +357,11 @@ namespace PersonalBudget_2._0
             }
         }
 
+        private void YearsWindow(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
         private void IncomeAccount ()
         {
@@ -354,7 +381,6 @@ namespace PersonalBudget_2._0
         }
         private void BalanceAccount()
         {
-            DateTime dateTime = DateTime.Now;
             Balance blc = new Balance(months[dateTime.Month],balance);
             bool exists = false;
             int index = -1;
@@ -376,12 +402,38 @@ namespace PersonalBudget_2._0
                 balances.Add(blc);
             }
         }
+
+        private void YearAccount()
+        {
+            Year year = new Year(dateTime.Year,balance);
+            bool exists = false;
+            int index = -1;
+            for (int i = 0; i < years.Count; i++)
+            {
+                if (years[i].TotalYear == year.TotalYear)
+                {
+                    exists = true;
+                    index = i;
+                    break;  
+                }
+            }
+            if (exists)
+            {
+                years[index].Balance = year.Balance;
+            }
+            else
+            {
+                years.Add(year);
+            }
+        }
+
         private void UpdateStatus()
         {
             IncomeAccount();
             ExpenseAccount();
             balance = income - expense;
             BalanceAccount();
+            YearAccount();
             if (setting.Language == "en")
             {
                 buttIncome.Content = "Income: " + Convert.ToString(income);
