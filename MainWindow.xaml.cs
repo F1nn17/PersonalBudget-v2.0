@@ -67,6 +67,8 @@ namespace PersonalBudget_2._0
                 incomes.Clear();
                 expenses.Clear();
                 balances.Clear();
+                setting.Year = dateTime.Year;
+                WorkFile.SetNewYear(setting);
                 YearAccount();
                 UnloadData();
                 LoadData();

@@ -165,8 +165,7 @@ namespace PersonalBudget_2._0
             }
             catch
             {
-                using (FileStream fs = new FileStream("Settings.json", FileMode.Create)) { fs.Close(); }
-                using (FileStream fs = new FileStream("Settings.json", FileMode.Truncate))
+                using (FileStream fs = new FileStream("Settings.json", FileMode.OpenOrCreate))
                 {
                     //запись базовых настроек
                     DateTime dt = DateTime.Now;
@@ -177,6 +176,20 @@ namespace PersonalBudget_2._0
                 }
             }
             return setting;
+        }
+
+        public static void SetNewYear(Settings setting)
+        {
+            try
+            {
+                using (FileStream fs = new FileStream("Settings.json", FileMode.Open))
+                {
+                    //запись базовых настроек
+                    JsonSerializer.Serialize<Settings>(fs, setting);
+                    fs.Close();
+                }
+            }
+            catch { }
         }
 
         public static void WriteSettings(Settings settings)
