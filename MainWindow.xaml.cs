@@ -56,18 +56,21 @@ namespace PersonalBudget_2._0
         private int expense = 0;
         private int balance = 0;
 
+        private int currentMonth = 0;
 
         //flags - 'I' - Income, 'E' - expenses, 'B' - balance table
         private string flag = "I";
         public MainWindow()
         {
             LoadData();
+            currentMonth = dateTime.Month;
             if(setting.Year != dateTime.Year)
             {
                 incomes.Clear();
                 expenses.Clear();
                 balances.Clear();
                 setting.Year = dateTime.Year;
+                setting.Month = currentMonth;
                 WorkFile.SetNewYear(setting);
                 YearAccount();
                 UnloadData();
@@ -78,7 +81,7 @@ namespace PersonalBudget_2._0
             UpdateStatus();
             if (balances.Count >= 2)
             {
-                if (months[dateTime.Month] != balances[balances.Count - 2].month)
+                if (months[currentMonth] != months[setting.Month])
                 {
                     incomes.Clear();
                     expenses.Clear();
@@ -92,6 +95,8 @@ namespace PersonalBudget_2._0
                         Income pastBalance = new Income("Предыдущий месяц", balances[balances.Count - 2].balance, date);
                         incomes.Add(pastBalance);
                     }
+                    setting.Month = currentMonth;
+                    WorkFile.SetNewMonth(setting);
                     UpdateStatus();
                     UnloadData();
                 }

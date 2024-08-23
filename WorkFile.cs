@@ -169,8 +169,9 @@ namespace PersonalBudget_2._0
                 {
                     //запись базовых настроек
                     DateTime dt = DateTime.Now;
+                    int currentMonth = dt.Month;
                     int year = dt.Year;
-                    Settings settings = new Settings("ru", year);
+                    Settings settings = new Settings("ru", currentMonth, year);
                     JsonSerializer.Serialize<Settings>(fs, settings);
                     fs.Close();
                 }
@@ -184,7 +185,19 @@ namespace PersonalBudget_2._0
             {
                 using (FileStream fs = new FileStream("Settings.json", FileMode.Open))
                 {
-                    //запись базовых настроек
+                    JsonSerializer.Serialize<Settings>(fs, setting);
+                    fs.Close();
+                }
+            }
+            catch { }
+        }
+
+        public static void SetNewMonth(Settings setting)
+        {
+            try
+            {
+                using (FileStream fs = new FileStream("Settings.json", FileMode.Open))
+                {
                     JsonSerializer.Serialize<Settings>(fs, setting);
                     fs.Close();
                 }

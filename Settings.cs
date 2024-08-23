@@ -10,11 +10,13 @@ namespace PersonalBudget_2._0
     {
         private string language = "ru";
         private int year = 0;
+        private int currentMonth = 0;
 
         public Settings() { }
-        public Settings(string language, int year) 
+        public Settings(string language,int month ,int year) 
         {
             this.language = language; 
+            this.currentMonth = month;
             this.year = year;
         }
         public Settings(string language)
@@ -25,8 +27,8 @@ namespace PersonalBudget_2._0
         {
             this.year = year;
         }
-
         public string Language { get { return language; } set { language = value; } }
         public int Year { get { return year; } set { year = value; } }
+        public int Month { get { return currentMonth; } set { currentMonth = value; } }
     }
 }
