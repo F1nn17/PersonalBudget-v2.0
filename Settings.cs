@@ -9,9 +9,9 @@ namespace PersonalBudget_2._0
     internal class Settings
     {
         private string language = "ru";
-        private int year = 0;
         private int currentMonth = 0;
-
+        private int year = 0;
+        
         public Settings() { }
         public Settings(string language,int month ,int year) 
         {
